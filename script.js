@@ -24,10 +24,10 @@ function playRound(playerSelection, computerSelection) {
         result = "You lose! Scissors beat Paper";
     } else if (playerSelection == "scissors" && computerSelection === "Rock") {
         result = "You lose! Rock beats Scissors";
-    } else if (playerSelection != "rock" || playerSelection != "paper" || playerSelection != "scissors") {
-        result = "You need to choose a weapon!";
-    } else {
+    } else if (playerSelection == computerSelection.toLowerCase()) {
         result = "It's a draw! Try again";
+    } else {
+        result = "You need to choose a weapon!";
     }
 
     return result;
