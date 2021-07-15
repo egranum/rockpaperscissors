@@ -1,38 +1,70 @@
-const weapon = ["Rock", "Paper", "Scissors"];
+const weapon = ["rock", "paper", "scissors"];
+
+let computerSelection;
 
 function computerPlay() {
-    const random = Math.floor(Math.random() * weapon.length);
-    return weapon[random];
+    let random = Math.floor(Math.random() * weapon.length);
+    computerSelection = weapon[random];
 }
 
-const playerSelection = prompt("Choose your weapon: Rock, paper or scissors!", '').toLowerCase();
+let playerSelection;
 
-const computerSelection = computerPlay();
+function personPlay() {
+    playerSelection = prompt("Choose your weapon: Rock, paper or scissors!", '').toLowerCase();
+}
+
+
+let result;
 
 function playRound(playerSelection, computerSelection) {
-    let result;
 
-    if (playerSelection == "rock" && computerSelection === "Scissors") {
+    if (playerSelection == "rock" && computerSelection === "scissors") {
         result = "You win! Rock beats Scissors";
-    } else if (playerSelection == "paper" && computerSelection === "Rock") {
+    } else if (playerSelection == "paper" && computerSelection === "rock") {
         result = "You win! Paper beats Rock";
-    } else if (playerSelection == "scissors" && computerSelection === "Paper") {
+    } else if (playerSelection == "scissors" && computerSelection === "paper") {
         result = "You win! Scissors beat Paper";
-    } else if (playerSelection == "rock" && computerSelection === "Paper") {
+    } else if (playerSelection == "rock" && computerSelection === "paper") {
         result = "You lose! Paper beats Rock";
-    } else if (playerSelection == "paper" && computerSelection === "Scissors") {
+    } else if (playerSelection == "paper" && computerSelection === "scissors") {
         result = "You lose! Scissors beat Paper";
-    } else if (playerSelection == "scissors" && computerSelection === "Rock") {
+    } else if (playerSelection == "scissors" && computerSelection === "rock") {
         result = "You lose! Rock beats Scissors";
-    } else if (playerSelection == computerSelection.toLowerCase()) {
-        result = "It's a draw! Try again";
+    } else if (playerSelection == computerSelection) {
+        result = "It's a draw!";
     } else {
         result = "You need to choose a weapon!";
     }
 
-    return result;
+    console.log("Your choice: " + playerSelection);
+    console.log("Computer's choice: " + computerSelection);
+    console.log(result);
 }
 
-console.log(playerSelection);
-console.log(computerSelection);
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+    personPlay();
+    computerPlay();
+    playRound(playerSelection, computerSelection);
+
+
+    personPlay();
+    computerPlay();
+    playRound(playerSelection, computerSelection);
+
+
+    personPlay();
+    computerPlay();
+    playRound(playerSelection, computerSelection);
+
+
+    personPlay();
+    computerPlay();
+    playRound(playerSelection, computerSelection);
+
+
+    personPlay();
+    computerPlay();
+    playRound(playerSelection, computerSelection);
+}
+
+game();
