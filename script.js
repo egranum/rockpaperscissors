@@ -42,29 +42,109 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
+    let x = 0;
+    let y = 0;
     personPlay();
     computerPlay();
     playRound(playerSelection, computerSelection);
 
-
-    personPlay();
-    computerPlay();
-    playRound(playerSelection, computerSelection);
-
-
-    personPlay();
-    computerPlay();
-    playRound(playerSelection, computerSelection);
-
-
-    personPlay();
-    computerPlay();
-    playRound(playerSelection, computerSelection);
+    switch (result) {
+        case "You win! Rock beats Scissors":
+        case "You win! Paper beats Rock":
+        case "You win! Scissors beat Paper":
+            x++;
+            break;
+        case "You lose! Paper beats Rock":
+        case "You lose! Scissors beat Paper":
+        case "You lose! Rock beats Scissors":
+            y++;
+            break;
+    }
 
 
     personPlay();
     computerPlay();
     playRound(playerSelection, computerSelection);
+    
+    switch (result) {
+        case "You win! Rock beats Scissors":
+        case "You win! Paper beats Rock":
+        case "You win! Scissors beat Paper":
+            x++;
+            break;
+        case "You lose! Paper beats Rock":
+        case "You lose! Scissors beat Paper":
+        case "You lose! Rock beats Scissors":
+            y++;
+            break;
+    }
+
+
+    personPlay();
+    computerPlay();
+    playRound(playerSelection, computerSelection);
+
+    switch (result) {
+        case "You win! Rock beats Scissors":
+        case "You win! Paper beats Rock":
+        case "You win! Scissors beat Paper":
+            x++;
+            break;
+        case "You lose! Paper beats Rock":
+        case "You lose! Scissors beat Paper":
+        case "You lose! Rock beats Scissors":
+            y++;
+            break;
+    }
+
+
+    personPlay();
+    computerPlay();
+    playRound(playerSelection, computerSelection);
+
+    switch (result) {
+        case "You win! Rock beats Scissors":
+        case "You win! Paper beats Rock":
+        case "You win! Scissors beat Paper":
+            x++;
+            break;
+        case "You lose! Paper beats Rock":
+        case "You lose! Scissors beat Paper":
+        case "You lose! Rock beats Scissors":
+            y++;
+            break;
+    }
+
+
+    personPlay();
+    computerPlay();
+    playRound(playerSelection, computerSelection);
+
+    switch (result) {
+        case "You win! Rock beats Scissors":
+        case "You win! Paper beats Rock":
+        case "You win! Scissors beat Paper":
+            x++;
+            break;
+        case "You lose! Paper beats Rock":
+        case "You lose! Scissors beat Paper":
+        case "You lose! Rock beats Scissors":
+            y++;
+            break;
+    }
+
+
+    let score;
+
+    if (x > y) {
+        score = "Congrats! You won " + x + " out of 5 games";
+    } else if (x < y) {
+        score = "You lost! Computer won " + y + " games out of 5. Better luck next time";
+    } else {
+        score = "It's a tie, try again!";
+    }
+
+    console.log(score);
 }
 
 game();
