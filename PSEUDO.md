@@ -28,3 +28,15 @@ Make computer randomly choose rock paper scissors.
     If rock and scissors, rock wins
     if paper and scissors, scissors win
     If choices are the same, it's a tie
+
+playerSelection should reflect which button is pressed
+
+eventListener for buttons div
+register which button is pressed
+make pressed button playerSelection
+
+buttons querySelector
+addEventlistener on click for buttons
+    check which button
+    button = playerSelection
+    run playRound with button as playerSelection
