@@ -29,26 +29,35 @@ const winTable = {
     scissors: "paper"
 }
 
+function textOutput(stringInput) {
+    const results = document.querySelector('.results');
+    let text = document.createElement('p');
+    text.textContent = stringInput;
+    results.appendChild(text);
+}
+
 function findWinner(first, second) {
     if (winTable[first] === second) {
-        console.log(`${capitalizeFirstLetter(first)} beats ${second}`)
+        textOutput(`${capitalizeFirstLetter(first)} beats ${second}`)
         return 1
     } 
     if (winTable[second] === first) {
-        console.log(`${capitalizeFirstLetter(second)} beats ${first}`)
+        textOutput(`${capitalizeFirstLetter(second)} beats ${first}`)
         return -1
     }
-    console.log(`${capitalizeFirstLetter(first)} ties ${second}`)
+    textOutput(`${capitalizeFirstLetter(first)} ties ${second}`)
     return 0
 }
+
+
 
 function playRound(playerSelection, computerSelection) {
 
     if (!winTable?.[playerSelection]) {
         return null
     }
-    console.log("Your choice: " + playerSelection);
-    console.log("Computer's choice: " + computerSelection);
+    textOutput(`Your choice: ${playerSelection}`);
+    textOutput(`Computer's choice: ${computerSelection}`);
     const winner = findWinner(playerSelection ,computerSelection)
     
     return winner
