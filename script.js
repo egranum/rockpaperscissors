@@ -1,10 +1,8 @@
 const weapon = ["rock", "paper", "scissors"];
 
-let computerSelection;
-
-function computerPlay() {
-    let random = Math.floor(Math.random() * weapon.length);
-    computerSelection = weapon[random];
+function generateComputerMove() {
+    const random = Math.floor(Math.random() * weapon.length);
+    return weapon[random];
 }
 
 // Old one, might be deleted
@@ -51,7 +49,8 @@ function findWinner(first, second) {
 
 
 
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
+    generateComputerMove()
 
     if (!winTable?.[playerSelection]) {
         return null
@@ -65,20 +64,31 @@ function playRound(playerSelection, computerSelection) {
 
 const buttons = document.querySelector('.buttons')
 
-buttons.addEventListener('click', function(e) {
-    const playerSelection = e.target.className.toString();
-    computerPlay();
-    playRound(playerSelection, computerSelection);
-})
+let currentPlayerSelection;
 
 /*
+after button click complete the rest of the round
+*/
+function completeRound() 
+
 function game() {
     let playerScore = 0;
     let computerScore = 0;
     for (let i = 0; i < 5; i++) {
+
+        buttons.addEventListener('click', function(e) {
+            currentPlayerSelection = e.target.className.toString();
+        })
+
+        const lastPlayerSelection = currentPlayerSelection;
+        while (true) {
+            if (currentPlayerSelection !== lastPlayerSelection) {
+                break
+            }
+
+        }
         const playerSelection = getPlayerSelection();
-        computerPlay();
-        const result = playRound(playerSelection, computerSelection);
+        const result = playRound(playerSelection);
 
         switch(result) {
             case 1:
@@ -101,4 +111,3 @@ function game() {
         console.log("It's a tie");
     }
 }
-*/
