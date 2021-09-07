@@ -34,6 +34,11 @@ function textOutput(stringInput) {
     results.appendChild(text);
 }
 
+function removeOutput() {
+    const results = document.querySelector('.results');
+    results.textContent = ''
+}
+
 function findWinner(first, second) {
     if (winTable[first] === second) {
         textOutput(`${capitalizeFirstLetter(first)} beats ${second}`)
@@ -50,7 +55,10 @@ function findWinner(first, second) {
 
 
 function playRound(playerSelection) {
-    generateComputerMove()
+    //clear all text
+    removeOutput()
+
+    const computerSelection = generateComputerMove()
 
     if (!winTable?.[playerSelection]) {
         return null
@@ -62,32 +70,46 @@ function playRound(playerSelection) {
     return winner
 }
 
-const buttons = document.querySelector('.buttons')
 
-let currentPlayerSelection;
+const determineGameWinner = (playerScore, computerScore) => {
+    if (playerScore < computerScore) return "Computer"
+    return "Player"
+}
 
-/*
-after button click complete the rest of the round
-*/
-function completeRound() 
+const addRestartButton = () => {
+    const body = document.querySelector('body')
+    const restartButton = document.createElement('button')
+    restartButton.textContent = 'Restart'
+    restartButton.classList.add('restart')
+    body.appendChild(restartButton)
 
-function game() {
+}
+
+const reload = () => {
+    window.location.reload()
+}
+
+const finishGame = (playerScore, computerScore, buttons, completeRound) => {
+    const winner = determineGameWinner(playerScore, computerScore)
+    textOutput(`Game Complete. The Winner Is ${winner}`)
+    buttons.removeEventListener('click', completeRound)
+    buttons.remove()
+    addRestartButton()
+    const restart = document.querySelector('.restart')
+    restart.addEventListener('click', reload)
+}
+
+
+function setupGame() {
     let playerScore = 0;
     let computerScore = 0;
-    for (let i = 0; i < 5; i++) {
 
-        buttons.addEventListener('click', function(e) {
-            currentPlayerSelection = e.target.className.toString();
-        })
-
-        const lastPlayerSelection = currentPlayerSelection;
-        while (true) {
-            if (currentPlayerSelection !== lastPlayerSelection) {
-                break
-            }
-
-        }
-        const playerSelection = getPlayerSelection();
+    const buttons = document.querySelector('.buttons')
+    /*
+    after button click complete the rest of the round
+    */
+    function completeRound(e) {
+        const playerSelection = e.target.className.toString();
         const result = playRound(playerSelection);
 
         switch(result) {
@@ -101,13 +123,10 @@ function game() {
                 console.log("You need to choose a weapon!")
                 break;
         }
-    }
 
-    if (playerScore < computerScore) {
-        console.log("You lose");
-    } else if (playerScore > computerScore) {
-        console.log("You win!");
-    } else {
-        console.log("It's a tie");
+        if ((playerScore >= 5) || (computerScore >= 5)) finishGame(playerScore, computerScore, buttons, completeRound);
     }
+    buttons.addEventListener('click', completeRound)
+    
 }
+setupGame()

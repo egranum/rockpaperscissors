@@ -40,3 +40,15 @@ addEventlistener on click for buttons
     check which button
     button = playerSelection
     run playRound with button as playerSelection
+
+
+
+Keeping score and moving from console log to div:
+
+function makeTextOutput(text) {
+    querySelector for the div
+    createElement p
+    p textContent = text
+    append p child to div
+}
+
